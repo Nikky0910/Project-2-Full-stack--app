@@ -2,6 +2,11 @@ const express = require('express')
 const authRouter = express.Router();
 const {User} = require('../../models')
 
+
+authRouter.get('/signup', (req, res) => {
+    res.render('signup.handlebars')
+})
+
 authRouter.post('/signup', async (req ,res)=>{
     
     // Get form data
@@ -20,5 +25,26 @@ authRouter.post('/signup', async (req ,res)=>{
     }
 })
 
+authRouter.get('/login', (req, res) => {
+    res.render('login.handlebars')
+})
+
+authRouter.post('/login', async (req, res)=> {
+
+    const user = await User.findAll({
+        where: {
+            email : req.body.email,
+            password: req.body.password
+        }
+    })
+
+    if (!user){
+        console.log('user not found')
+        const errorMessage = 'Invalid username or password';
+        return res.status(400).json(errorMessage)
+    }
+
+    return res.status(200)
+})
 
 module.exports = authRouter;
