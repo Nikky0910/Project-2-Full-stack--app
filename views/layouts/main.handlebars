@@ -4,18 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My Project!</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Travelbook</title>
+  {{!-- <link rel="stylesheet" href="/css/jass.css">
+  <link rel="stylesheet" href="/css/style.css"> --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
 <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Fund My Project!</a>
-      </h1>
+    <header >
+      <div class="image">
+        <img src="/images/Project-Logo.jpeg" alt="Travelbook Logo" class="max-width-150 block-margin-bottom-1">
+      </div>
+      <h1 class="margin-0">
+          <a href="/">Travelbook</a>
+        </h1>
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
