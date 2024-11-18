@@ -19,7 +19,7 @@ authRouter.post('/signup', async (req ,res)=>{
     try {
         await User.create(userData);
     
-        res.redirect('/main-choices')
+        res.redirect('/mainChoices')
     } catch {
         return res.status(400).render('signup.handlebars');
     }
