@@ -4,8 +4,6 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-
-
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -38,25 +36,10 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.static('public'));
+app.use('/api', routes);
 
-// GET Route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-
-// GET Route for feedback page
-app.get('/feedback', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))
-);
-
-// Wildcard route to direct users to a 404 page
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, 'public/pages/404.html'))
-);
-
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT}`)
-);
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
