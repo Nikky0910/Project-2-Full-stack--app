@@ -1,6 +1,6 @@
 const express = require('express')
 const authRouter = express.Router();
-const {User} = require('../../models/User')
+const User = require('../../models/User')
 
 
 authRouter.get('/signup', (req, res) => {
@@ -19,7 +19,7 @@ authRouter.post('/signup', async (req ,res)=>{
     try {
         await User.create(userData);
     
-        res.redirect('/mainChoices')
+        res.redirect('/api/main/mainChoices')
     } catch {
         return res.status(400).render('signup.handlebars');
     }

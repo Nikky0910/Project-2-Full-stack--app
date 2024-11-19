@@ -1,6 +1,6 @@
 const express = require('express');
 const postRouter = express.Router();
-const {Post} = require('../../models/Post')
+const Post = require('../../models/Post')
 
 postRouter.get('/postForm', (req, res) => {
     res.render('postForm.handlebars')
