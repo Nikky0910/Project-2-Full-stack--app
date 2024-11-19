@@ -1,6 +1,6 @@
 const express = require('express')
 const authRouter = express.Router();
-const {User} = require('../../models')
+const {User} = require('../../models/User')
 
 
 authRouter.get('/signup', (req, res) => {
