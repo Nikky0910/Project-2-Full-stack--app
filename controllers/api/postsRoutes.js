@@ -28,4 +28,4 @@ postRouter.get('/allPosts', (req, res) => {
     res.render('feed.handlebar')
 })
 
-module.exports
+module.exports = postRouter;
