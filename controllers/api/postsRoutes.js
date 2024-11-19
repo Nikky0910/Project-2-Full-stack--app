@@ -1,6 +1,6 @@
 const express = require('express');
 const postRouter = express.Router();
-const {Post} = require('../../models')
+// const {Post} = require('../../models')
 
 postRouter.get('/postForm', (req, res) => {
     res.render('postForm.handlebars')
@@ -16,7 +16,7 @@ postRouter.post('/postForm', async (req ,res)=>{
     }
     // Create model object instance with form data
     try {
-        await Post.create(postData);
+        // await Post.create(postData);
     
         res.redirect('/allPosts')
     } catch {
@@ -25,5 +25,7 @@ postRouter.post('/postForm', async (req ,res)=>{
 })
 
 postRouter.get('/allPosts', (req, res) => {
-    res.render('posts.handlebar')
+    res.render('feed.handlebar')
 })
+
+module.exports
