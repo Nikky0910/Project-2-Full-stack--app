@@ -1,13 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "mini-project",
-  "version": "1.0.0",
-  "main": "server.js",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.17.1",
-    "uuid": "^8.3.2"
-=======
   "name": "crowd-funding",
   "version": "1.0.0",
   "description": "",
@@ -34,6 +25,5 @@
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2"
->>>>>>> 099c07b06db46ec512ed3f5f6a1063830fa3e31c
   }
 }

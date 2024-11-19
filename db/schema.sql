@@ -1,20 +1,2 @@
 DROP DATABASE IF EXISTS crowdfund_db;
-CREATE DATABASE userData_db;
-
-USE DATABASE userData_db;
-
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-);
-
-CREATE TABLE post (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  users_id INT,
-  message TEXT NOT NULL, 
-  location VARCHAR (255),
-  FOREIGN KEY (users_id) REFERENCES users(id)
-);
-
+CREATE DATABASE crowdfund_db;
