@@ -1,44 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My Project!</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Fund My Project!</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
-
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-</body>
-
+<html lang="en" class="has-background-dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelbook</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="../../public/css/style.css"> 
+  </head>
+  <body class="has-background-dark min-vh-100" style="margin-bottom: 0;">
+    <div class="flex-column justify-space-around min-vh-100">
+      <header class="container is-fluid p-3 mt-3">
+        <div class="columns is-vcentered is-marginless">
+          <div class="column is-narrow pt-0">
+            <figure class="image is-64x64">
+              <img src="images/Travelbook-Logo.png" alt="Travelbook Logo" class="is-rounded">
+            </figure>
+          </div>
+          <div class="column">
+            <div class="level">
+              <div class="level-left">
+                <h1 class="title mb-0">
+                  <a href="/" class="has-text-primary">Travelbook</a>
+                </h1>
+              </div>
+              <div class="level-right mr-6">
+                <nav>
+                  {{#if logged_in}}
+                  <a href="/profile" class="has-text-primary">profile</a> |
+                  <button class="no-button has-text-primary" id="logout">logout</button>
+                  {{else}}
+                  <a href="/login" class="button has-background-primary-25">login</a>
+                  {{/if}}
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <hr class="has-background-primary" style="height: 2px; margin: 1rem 0 0 0;">
+      <main class="container container-fluid mt-5 flex-grow-1 has-text-white">
+          <img src="images/bean-chicago.jpg"/>
+        {{!-- {{{ body }}} --}}
+      </main>
+      <hr class="has-background-primary" style="height: 2px; margin: 0;">
+      <footer class="footer has-background-dark" style="padding: 1.5rem; padding-bottom: 0;">
+        <div class="content has-text-centered has-text-white pb-0 mb-0">
+          <p class="mb-2">
+            <strong class="has-text-white">Travelbook</strong> by <a href="https://github.com/yourusername" class="has-text-primary">Your Team Names</a>.
+            <br>
+            © 2024 Travelbook. All rights reserved.
+          </p>
+          <div class="mt-2">
+            <a href="/about" class="has-text-primary mx-2">About</a>
+            <a href="/contact" class="has-text-primary mx-2">Contact</a>
+            <a href="/privacy" class="has-text-primary mx-2">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+  </body>
 </html>

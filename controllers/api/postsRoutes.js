@@ -10,18 +10,20 @@ postRouter.post('/postForm', async (req ,res)=>{
     
     // Get form data
     const postData= {
-        destination : req.body.destination,
-        description : req.body.description,
-        recommendations: req.body.recommendations
+        city: req.body.city,
+        placeName: req.body.placeName,
+        description: req.body.description,
+        date_created: req.body.date_created,
     }
     // Create model object instance with form data
-    try {
+    try{
         await Post.create(postData);
-    
         res.redirect('/allPosts')
     } catch {
         return res.status(400).render('postForm.handlebars');
     }
+    
+    
 })
 
 postRouter.get('/allPosts', (req, res) => {
