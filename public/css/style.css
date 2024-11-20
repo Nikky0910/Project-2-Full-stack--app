@@ -1,3 +1,8 @@
+:root {
+  background-color: var(--bulma-primary-45);
+  color: var(--bulma-primary-40);
+
+}
 header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
@@ -12,6 +17,10 @@ header, .project:not(:last-child) {
   font-size: 100%;
 }
 
+.button {
+  background-color: var(--bulma-primary-45);
+  color: var(--bulma-primary-40);
+}
 .no-button:hover {
   color: #065b83;
   text-decoration: underline;
@@ -22,3 +31,12 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+
+
+.pic {
+  object-fit: contain;
+  height: 50vh;
+  width: 100%;
+}
+
+
