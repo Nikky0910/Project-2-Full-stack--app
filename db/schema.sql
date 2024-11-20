@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS travelForum_db;
-CREATE DATABASE travelForum_db;
+DROP DATABASE IF EXISTS travelblog_db;
+CREATE DATABASE travelblog_db;
