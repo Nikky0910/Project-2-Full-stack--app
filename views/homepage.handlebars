@@ -1,24 +1,50 @@
-<!-- Loop over each object in the projects array -->
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/project/{{project.id}}">{{project.name}}</a>
-    </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount project.needed_funding}}</span>
-      needed!
-    </p>
-    <p>Created by {{project.user.name}} on {{format_date project.date_created}}</p>
+<div class="columns is-multiline pl-2">
+  <!-- First Image -->
+  <div class="column is-one-third">
+    <div class="box has-background-dark mb-4">
+      <figure class="image">
+        <img src="/images/homepage1.png" alt="Travel Image 1">
+      </figure>
+    </div>
   </div>
-  <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
+  <!-- Second Image -->
+  <div class="column is-one-third">
+    <div class="box has-background-dark mb-4">
+      <figure class="image">
+        <img src="/images/homepage2.avif" alt="Travel Image 2">
+      </figure>
+    </div>
+  </div>
+  <!-- Third Image -->
+  <div class="column is-one-third">
+    <div class="box has-background-dark mb-4">
+      <figure class="image">
+        <img src="/images/homepage3.avif" alt="Travel Image 3">
+      </figure>
+    </div>
+  </div>
+  <!-- Fourth Image -->
+  <div class="column is-one-third">
+    <div class="box has-background-dark mb-4">
+      <figure class="image">
+        <img src="/images/homepage4.avif" alt="Travel Image 4">
+      </figure>
+    </div>
+  </div>
+  <!-- Fifth Image -->
+  <div class="column is-one-third">
+    <div class="box has-background-dark mb-4">
+      <figure class="image">
+        <img src="/images/homepage5.avif" alt="Travel Image 5">
+      </figure>
+    </div>
+  </div>
+  <!-- Sixth Image -->
+  <div class="column is-one-third">
+    <div class="box has-background-dark mb-4">
+      <figure class="image">
+        <img src="/images/Travelbook-Main.png" alt="Travel Image 6">
+      </figure>
+    </div>
   </div>
 </div>
-{{/each}}
