@@ -1,0 +1,157 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+
+      <!-- Columna del formulario -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content new-project-form">
+            <h3 class="title is-4 has-text-centered">Create a New Post:</h3>
+            <form class="form new-project-form" id="postForm">
+
+              <!-- Image upload field -->
+              <div class="field">
+                <label class="label" for="project-image">Upload an image:</label>
+                <div class="control">
+                  <div class="file has-name is-boxed">
+                    <label class="file-label">
+                      <input class="file-input" type="file" id="project-image" name="project-image" accept="image/*">
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">Choose a file…</span>
+                      </span>
+                      <span class="file-name" id="file-name">No file uploaded</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- City input field -->
+              <div class="field">
+                <label class="label" for="project-city">City:</label>
+                <div class="control">
+                  <input class="input" type="text" id="project-city" name="project-city"
+                    placeholder="Enter the post city" required>
+                </div>
+              </div>
+
+              <!-- Place Name input field -->
+              <div class="field">
+                <label class="label" for="project-placeName">Place Name:</label>
+                <div class="control">
+                  <input class="input" type="text" id="project-placeName" name="project-placeName"
+                    placeholder="Enter the post Place Name" required>
+                </div>
+              </div>
+
+              <!-- Description input field -->
+              <div class="field">
+                <label class="label" for="project-desc">Description:</label>
+                <div class="control">
+                  <textarea class="textarea" id="project-desc" name="project-desc"
+                    placeholder="Enter the post description" required></textarea>
+                </div>
+              </div>
+
+              <!-- Date input field -->
+              <div class="field">
+                <label class="label" for="project-date">Select a date:</label>
+                <div class="control">
+                  <input class="input" type="date" id="project-date" name="project-date" required>
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <div class="field has-text-centered">
+                <button type="submit" class="button is-primary is-outlined">Create</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna de la lista de posts -->
+      <div class="column is-half">
+        {{#if postArray.length}}
+        <div class="boxPosts">
+          <h3 class="title is-4 has-text-centered" style="color: #00d1b2;">Current Posts</h3>
+
+          <div class="accordions">
+            {{#each postArray as |project index|}}
+            <div class="accordion-item" style="margin-bottom: 1rem; border: 1px solid #363636; border-radius: 5px;">
+              <header class="card-header has-background-dark has-text-white">
+                <p class="card-header-title" style="color: #00d1b2;">
+                  {{project.placeName}}
+                </p>
+                <button class="card-header-icon toggle-button" data-target="content-{{index}}" style="color: #00d1b2;">
+                  <span class="icon">
+                    <i class="fas fa-angle-down"></i>
+                  </span>
+                </button>
+              </header>
+              <div id="content-{{index}}" class="card-content is-hidden">
+                <div class="contentCard">
+                  <p style="color: #00d1b2;">Description: {{project.description}}</p>
+                  {{!-- <p>Created by <span style="color: #363636;">{{project.user.name}}</span> on {{format_date
+                    project.date}}</p> --}}
+                  <div class="buttons mt-3">
+                    <button class="button is-small is-danger" onclick="deleteDan({{project.id}})">DELETE</button>
+                    <button class="button is-small is-warning" onclick="editPostView({{project.id}})">EDIT</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
+
+<!-- Modal for editing posts -->
+<div class="modal" id="editModal">
+  <div class="modal-background" onclick="closeModal()"></div>
+  <div class="modal-content">
+    <div class="box">
+      <h5 class="title is-5">Edit Post</h5>
+      <form id="editForm">
+        <input type="hidden" id="edit-id">
+
+        <div class="field">
+          <label class="label" for="edit-city">City</label>
+          <div class="control">
+            <input type="text" class="input" id="edit-city" name="edit-city">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="edit-placeName">Place Name</label>
+          <div class="control">
+            <input type="text" class="input" id="edit-placeName" name="edit-placeName">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="edit-desc">Description:</label>
+          <div class="control">
+            <textarea class="textarea" id="edit-desc" name="edit-desc"></textarea>
+          </div>
+        </div>
+
+        <input type="hidden" name="edit-date_created" id="edit-date_created">
+
+      </form>
+      <button type="button" class="button is-primary is-outlined" onclick="editPost()">Modify</button>
+
+    </div>
+  </div>
+</div>
+
+<script src="./js/post.js"></script>

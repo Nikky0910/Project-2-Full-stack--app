@@ -7,36 +7,131 @@ header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
-.no-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
-  text-decoration: none;
-  font-size: 100%;
-}
-
-.button {
-  background-color: var(--bulma-primary-45);
-  color: var(--bulma-primary-40);
-}
-.no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
-}
-
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
-}
-
-
 .pic {
   object-fit: contain;
   height: 50vh;
   width: 100%;
 }
 
+.card {
+  margin: auto;
+  max-width: 100%; 
+}
 
+.card img {
+  border-radius: 8px; 
+}
+
+.site-content {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+.card {
+  box-shadow: 0 4px 10px rgba(0, 209, 178, 0.5); 
+  border-radius: 10px; 
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02); 
+  box-shadow: 0 6px 15px rgba(0, 209, 178, 0.8); 
+}
+.new-project-form {
+  background-color: #363636;
+  padding: 2rem;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.new-project-form .label {
+  color: #00d1b2;
+  font-weight: bold;
+}
+
+.new-project-form .input,
+.new-project-form .textarea {
+  background-color: #2a2a2a;
+  border: 1px solid #00d1b2;
+  color: white;
+}
+
+.new-project-form .input:focus,
+.new-project-form .textarea:focus {
+  border-color: #00d1b2;
+  box-shadow: 0 0 0 2px rgba(0, 209, 178, 0.25);
+}
+
+.new-project-form .button {
+  background-color: #00d1b2;
+  color: white;
+  border-color: #00d1b2;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.new-project-form .button:hover {
+  background-color: #00b89c;
+  transform: scale(1.05);
+}
+
+.file.is-boxed .file-cta {
+  background-color: #2a2a2a;
+  border: 1px solid #00d1b2;
+}
+
+.file.is-boxed .file-cta:hover {
+  background-color: #363636;
+}
+
+.file.is-boxed .file-label {
+  color: #00d1b2;
+}
+
+.file.is-boxed .file-name {
+  color: white;
+  font-style: italic;
+}
+
+
+/* acordeon */
+
+.boxPosts{
+  border: 2px solid #00d1b2;
+  background-color: 363636;
+}
+
+.accordions .accordion-item {
+  transition: all 0.3s ease-in-out;
+}
+.accordions .accordion-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.card-header.has-background-dark {
+  background-color: #363636 !important;
+  border-bottom: 2px solid #00d1b2;
+}
+.card-header-title {
+  font-weight: bold;
+}
+.card-content {
+  padding: 1rem;
+  border-top: 2px solid #00d1b2;
+}
+
+.contentCard{
+  background-color: #363636;
+}
+
+
+@media (max-width: 768px) {
+  .card-content {
+    text-align: center; 
+  }
+}
