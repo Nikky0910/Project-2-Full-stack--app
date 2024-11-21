@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 
@@ -8,33 +8,33 @@ router.get('/', async (req, res) => {
   res.render('homepage');
 
 
-//   try {
-    // Get all projects and JOIN with user data
-    // const projectData = await Project.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['name'],
-    //     },
-    //   ],
-    // });
+  //   try {
+  // Get all projects and JOIN with user data
+  // const projectData = await Project.findAll({
+  //   include: [
+  //     {
+  //       model: User,
+  //       attributes: ['name'],
+  //     },
+  //   ],
+  // });
 
-    // Serialize data so the template can read it
-    // const projects = projectData.map((project) => project.get({ plain: true }));
+  // Serialize data so the template can read it
+  // const projects = projectData.map((project) => project.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
-    // res.render('homepage', {
-    //   projects,
-    //   logged_in: req.session.logged_in
-    // });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
+  // Pass serialized data and session flag into template
+  // res.render('homepage', {
+  //   projects,
+  //   logged_in: req.session.logged_in
+  // });
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
 });
 
 router.get('/project/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const projectData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -88,7 +88,7 @@ router.get('/login', (req, res) => {
 router.get('/posts', async (req, res) => {
 
   try {
-    const projectData = await Project.findAll({
+    const projectData = await Post.findAll({
       include: [
         {
           model: User,
@@ -102,15 +102,15 @@ router.get('/posts', async (req, res) => {
 
       const userName = projectPlain.user.name;
 
-      projectPlain.imageSrc = `/images/${userName}.jpg`;
+      projectPlain.imageSrc = `/imagesProfile/${userName}.jpg`;
 
-      // projectPlain.comments = [
-      //   {
-      //     userName: "Leo Messi",
-      //     content: "Leo MEssi, the best player in the history"
-      //   }
-      // ]
-      
+      projectPlain.comments = [
+        {
+          userName: "Leo Messi",
+          content: "Leo MEssi, the best player in the history"
+        }
+      ]
+
       return projectPlain;
 
     });
@@ -125,11 +125,42 @@ router.get('/posts', async (req, res) => {
 });
 
 
-router.get('/createpost', (req, res) => {
-  res.render('createpost');
+router.get('/createpost', withAuth, async (req, res) => {
+
+  try {
+    // Get all projects and JOIN with user data
+    const postData = await Post.findAll({
+      where: { user_id: req.session.user_id },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const postArray = postData.map((post) => post.get({ plain: true }));
+
+    console.log("leoMessi", postArray);
+
+
+    // Pass serialized data and session flag into template
+    res.render('createpost', {
+      postArray,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+
+
+
+  // res.render('createpost');
 });
 
-router.get('/signup',withAuth, (req, res) => {
+router.get('/signup', (req, res) => {
   res.render('signup');
 });
 

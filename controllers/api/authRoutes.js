@@ -7,7 +7,7 @@ authRouter.get('/signup', (req, res) => {
     res.render('signup.handlebars')
 })
 
-authRouter.post('/signup', async (req ,res)=>{
+authRouter.post('/', async (req ,res)=>{
     
     // Get form data
     const userData= {
@@ -19,32 +19,48 @@ authRouter.post('/signup', async (req ,res)=>{
     try {
         await User.create(userData);
     
-        res.redirect('/api/main/mainChoices')
+        res.redirect('/createpost');
+
     } catch {
-        return res.status(400).render('signup.handlebars');
+      res.redirect('/');
+
     }
 })
 
-authRouter.get('/login', (req, res) => {
-    res.render('login.handlebars')
-})
+// authRouter.get('/login', (req, res) => {
+//     res.render('login.handlebars')
+// })
 
-authRouter.post('/login', async (req, res)=> {
-
-    const user = await User.findAll({
-        where: {
-            email : req.body.email,
-            password: req.body.password
-        }
-    })
-
-    if (!user){
-        console.log('user not found')
-        const errorMessage = 'Invalid username or password';
-        return res.status(400).json(errorMessage)
+authRouter.post('/login', async (req, res) => {
+    try {
+      const userData = await User.findOne({ where: { email: req.body.email } });
+  
+      if (!userData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+  
+      const validPassword = await userData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+  
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        
+        res.json({ user: userData, message: 'You are now logged in!' });
+      });
+  
+    } catch (err) {
+      res.status(400).json(err);
     }
-
-    return res.status(200)
-})
+  });
 
 module.exports = authRouter;

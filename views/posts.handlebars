@@ -1,0 +1,87 @@
+{{#each projects as |project| }}
+<div class="columns is-centered">
+  <div class="column is-one-quarter">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{project.imageSrc}}" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="{{project.imageSrc}}" alt="Imagen del post">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-5">{{project.user.name}}</p>
+            <p class="subtitle is-7">@{{project.user.name}}</p>
+          </div>
+        </div>
+        <div class="content">
+          <p class="subtitle is-7"><strong>City:</strong> {{project.city}}</p>
+          <p class="subtitle is-7"><strong>Place Name :</strong>  {{project.placeName}}</p>
+
+          {{project.description}}
+          <br />
+          <time>{{format_date project.date_created}}</time>
+        </div>
+
+        <!-- Botones de interacción -->
+        <div class="mt-3 mb-3 is-flex is-gapless">
+          <button class="button is-primary" onclick="openModal('commentModal')" title="Add Comment">
+            <i class="fa-regular fa-comment"></i>
+          </button>
+          <button class="button is-primary ml-2" title="Like Post">
+            <i class="fa-regular fa-thumbs-up"></i>
+          </button>
+        </div>
+
+        <!-- Lista de comentarios -->
+        <div class="mt-3">
+          <p class="title is-6">Comments:</p>
+          <ul>
+            {{#each project.comments as |comment| }}
+            <li class="mb-2">
+              <strong>{{comment.userName}}</strong>: {{comment.content}}
+            </li>
+            {{else}}
+            <li>No comments yet.</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+
+<div class="modal" id="commentModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add Comment</p>
+      <button class="delete" aria-label="close" onclick="closeModal('commentModal')"></button>
+    </header>
+    <section class="modal-card-body">
+      <form id="commentForm">
+        <div class="field">
+          <label for="commentText" class="label">Comment:</label>
+          <div class="control">
+            <textarea class="textarea" id="commentText" required></textarea>
+          </div>
+        </div>
+        <input type="hidden" id="postId" name="post_id" value="">
+      </form>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-light" onclick="closeModal('commentModal')">Close</button>
+      <button class="button is-primary" onclick="submitComment()">Submit Comment</button>
+    </footer>
+  </div>
+</div>
+
+<script src="./js/comment.js"></script>
+<script src="./js/modal.js"></script>
