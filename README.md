@@ -34,6 +34,10 @@ Create: You can share your own travel stories for the world to see!
 
 - **live:**[View the video on Render](https://one4-techblog-0v7f.onrender.com)
 
+-[Presentation Template](https://docs.google.com/presentation/d/1Nmp6_Bsve4KHfrVxurf3rl0QeaA8Qi0d/edit?usp=drive_link&ouid=107813121111681404541&rtpof=true&sd=true)
+
+-[Live application](https://project-2-full-stack-app.onrender.com/)
+
 
 ## Installation
 To set up this project on your local machine, follow these steps:
