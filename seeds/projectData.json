@@ -1,0 +1,18 @@
+[
+  {
+    "city": "Miami",
+    "placeName": "Fridays",
+    "description": "this is a description of Fridays in Miami"
+
+  },
+  {
+    "city": "Las Vegas",
+    "placeName": "Strip",
+    "description": "this is a yea yea"
+  },
+  {
+    "city": "Chicago",
+    "placeName": "ummmmmm",
+    "description": "this is a description of this"
+  }
+]
